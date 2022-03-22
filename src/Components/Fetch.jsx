@@ -2,7 +2,7 @@ import { createContext, useState, useEffect } from "react";
 
 export const EventContext = createContext();
 export const Fetch = (props) => {
-  const [enter, setEnter] = useState(false);
+  //Sätter variabler till useState
   const [filteredResults, setFilteredResults] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [nrTicket, setNrTicket] = useState(0);
@@ -11,8 +11,8 @@ export const Fetch = (props) => {
 
   const url = "https://my-json-server.typicode.com/majazocom/events/events";
 
+  //Fetcha datan, sätt datan till "Events"
   useEffect(() => {
-    
     fetch(url)
       .then((response) => response.json())
       .then((data) => setEvents(data));

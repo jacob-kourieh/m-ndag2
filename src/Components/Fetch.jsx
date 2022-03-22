@@ -12,6 +12,7 @@ export const Fetch = (props) => {
   const url = "https://my-json-server.typicode.com/majazocom/events/events";
 
   useEffect(() => {
+    
     fetch(url)
       .then((response) => response.json())
       .then((data) => setEvents(data));

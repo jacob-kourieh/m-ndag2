@@ -1,13 +1,13 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { EventContext } from "./Fetch";
 import React from "react";
 import styles from "./EventCard.module.css";
 import { Link, useLocation } from "react-router-dom";
 
 function EventCard(props) {
-  // const location = useLocation();
+  //Hämta state via useContext
   const { filteredResults } = useContext(EventContext);
-
+  //Renderar eventcard
   return (
     <section>
       {props.event.map((event, index) => (

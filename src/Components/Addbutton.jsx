@@ -2,11 +2,13 @@ import { useEffect } from "react";
 import { useState, useContext, createContext } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { EventContext } from "./Fetch";
-import { TestContext } from "../App";
+import { AddPriceContext } from "../App";
 import styles from "./Ticket.module.css";
 
 export default function AddButton(props) {
   console.log(props);
+
+
   const location = useLocation();
   let getPrice;
   //Funktion som hämtar priset
@@ -15,9 +17,12 @@ export default function AddButton(props) {
       getPrice = item.price;
     });
   }
+
+  
   getPriceFunction(props);
   const [price, setPrice] = useState(getPrice);
-  const { test, setTest } = useContext(TestContext);
+  const { addPrice, setAddPrice } = useContext(AddPriceContext);
+
 
   const {
     totalPrice,
@@ -26,6 +31,7 @@ export default function AddButton(props) {
     setNrTicket,
     filteredResults,
     setFilteredResults,
+    
   } = useContext(EventContext);
 
   //Funktioner som beräknar totalt pris
@@ -33,7 +39,7 @@ export default function AddButton(props) {
     setNrTicket(nrTicket + 1);
     setPrice(price);
     setTotalPrice((prev) => prev + price);
-    setTest({
+    setAddPrice({
       ...filteredResults,
       nr: nrTicket,
       total: totalPrice,
@@ -52,7 +58,7 @@ export default function AddButton(props) {
     setTotalPrice(0);
   }, []);
 
-  console.log(test);
+  console.log(addPrice);
   return (
     <section className={styles.tickets}>
       <h1 className={styles.FirstPrice}>{totalPrice} kr </h1>

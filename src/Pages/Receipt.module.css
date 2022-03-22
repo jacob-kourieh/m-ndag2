@@ -10,7 +10,8 @@ body {
     font-style: italic;
     color: var(--color-pink);
     position: relative;
-    left: 118px;
+    left: 90px;
+    top:  8px;
 }
 
 .ticketsContainer {

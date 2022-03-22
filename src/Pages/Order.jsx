@@ -2,11 +2,13 @@ import { useContext, useState } from "react";
 import { EventContext } from "../Components/Fetch";
 import { useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
-import AddButton from "../Components/Addbutton";
-import { TestContext } from "../App";
 import styles from "./Order.module.css";
+import BackIcon from "../img/BackIcon.svg"
+
 
 function Order() {
+
+
   const location = useLocation();
   const {
     totalPrice,
@@ -16,13 +18,16 @@ function Order() {
     orderArray,
     setOrderArray,
   } = useContext(EventContext);
-  const [addedPrice, setAddedPrice] = useState([]);
-  const { test, setTest } = useContext(TestContext);
-  // let total = test.total;
-  console.log(test);
-  const [price, setPrice] = useState(totalPrice / nrTicket);
 
+
+ 
+  
+  const [price, setPrice] = useState(totalPrice / nrTicket);
   console.log(price);
+
+
+
+
 
   useEffect(() => {
     if (totalPrice > 0) {
@@ -30,13 +35,13 @@ function Order() {
         ...orderArray,
         location.state.from.from.filteredResults,
       ]);
-      // setAddedPrice((prev) => [prev, total]);
     }
   }, []);
 
-  // let fullPrice = [];
-  // fullPrice.push(addedPrice);
-  // console.log(fullPrice);
+  
+
+
+
 
   let fullArray = [];
   orderArray.forEach((element) => {
@@ -45,14 +50,8 @@ function Order() {
     });
   });
 
-  // useEffect(() => {
-  //   // if (!location) {
-  //   setFilteredResults((filteredResults) => [
-  //     ...filteredResults,
-  //     location.state,
-  //   ]);
-  //   // }
-  // }, []);
+  
+
 
   function addButton() {
     setNrTicket(nrTicket + 1);
@@ -60,11 +59,11 @@ function Order() {
     setTotalPrice((prev) => prev + price);
   }
 
-  const [clickArray, setClickArray] = useState();
+ 
+
+
 
   function subButton(e) {
-   
-
     if (nrTicket > 0) {
       setNrTicket(nrTicket - 1);
       setPrice(price);
@@ -72,8 +71,12 @@ function Order() {
     }
   }
 
+
+
+
   return (
-    <section className={styles.container}  >
+    <section className={styles.container} >
+      <Link to="/Event"><img className= " backIcon" src={BackIcon} alt="Go-back" /></Link>
       <h1 className='title'>Order</h1>
       {fullArray.map((event, index) => (
         <section key={index} className={styles.tickets} >
@@ -97,10 +100,9 @@ function Order() {
         <button className={styles.RightBtn} onClick={addButton}>+</button>
       </article>
     
-
         </section>
-
       ))}
+
 
           <span className={styles.information}>Totalt värde på order</span>
             <span className={styles.firstPrice}>{totalPrice} SEK</span>

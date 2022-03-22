@@ -15,15 +15,13 @@ export const Fetch = (props) => {
     fetch(url)
       .then((response) => response.json())
       .then((data) => setEvents(data));
-  }, [enter]);
+  }, []);
 
   return (
     <EventContext.Provider
       value={{
         events,
         setEvents,
-        enter,
-        setEnter,
         filteredResults,
         setFilteredResults,
         totalPrice,

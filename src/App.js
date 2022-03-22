@@ -8,36 +8,23 @@ import { Fetch } from "./Components/Fetch";
 import Receipt from "./Pages/Receipt";
 import Start from "./Components/Start";
 
-export const TestContext = createContext();
+export const AddPriceContext = createContext();
 
 function App() {
-  const [test, setTest] = useState();
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [addPrice, setAddPrice] = useState();
   return (
-    <TestContext.Provider
+    <AddPriceContext.Provider
       value={{
-        test,
-        setTest,
+        addPrice,
+        setAddPrice,
+        totalPrice,
+        setTotalPrice
       }}
     >
       <main>
         <BrowserRouter>
           <Fetch>
-            {/* <nav>
-              <ul>
-                <li>
-                  <Link to="/"> Home </Link>
-                </li>
-                <li>
-                  <Link to="/event"> Event </Link>
-                </li>
-                <li>
-                  <Link to="/order" state={{ from: { test } }}>
-                    {" "}
-                    Order{" "}
-                  </Link>
-                </li>
-              </ul>
-            </nav> */}
             <Routes>
             <Route path="/" element={ <Start />}></Route>
               <Route path="/event" element={<Event />}></Route>
@@ -48,7 +35,7 @@ function App() {
           </Fetch>
         </BrowserRouter>
       </main>
-    </TestContext.Provider>
+    </AddPriceContext.Provider>
   );
 }
 
